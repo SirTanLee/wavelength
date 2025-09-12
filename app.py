@@ -12,7 +12,7 @@ if "uploader_key" not in st.session_state:
 if "uploaded_files" not in st.session_state:
     st.session_state.uploaded_files = None
 
-c1, c2 = st.columns([3, 1])
+c1, c2 = st.columns([4, 1])
 with c1:
     files = st.file_uploader(
         "Upload one or more .txt files",
@@ -21,7 +21,6 @@ with c1:
         key=f"file_uploader_{st.session_state.uploader_key}",  # dynamic key
     )
 with c2:
-    st.write("")
     if st.button("Clear all files"):
         st.session_state.uploaded_files = None
         st.session_state.uploader_key += 1   # forces a fresh uploader
