@@ -21,6 +21,7 @@ with c1:
         key=f"file_uploader_{st.session_state.uploader_key}",  # dynamic key
     )
 with c2:
+    st.write("")
     if st.button("Clear all files"):
         st.session_state.uploaded_files = None
         st.session_state.uploader_key += 1   # forces a fresh uploader
