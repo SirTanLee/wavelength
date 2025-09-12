@@ -70,21 +70,23 @@ if files:
             idx = int(np.argmin(np.abs(xs - tgt)))
             x_vals.append(i * step)
             y_vals.append(float(ys[idx]))
-
-        # 4) Show table
-        st.subheader("Extracted series")
-        st.dataframe(
-            [{"Experiment_Time": x, f"Value_at_{target}": y} for x, y in zip(x_vals, y_vals)],
-            use_container_width=True
-        )
-
-        # 5) Plot
+        
+        # 4) Plot
         fig, ax = plt.subplots()
         ax.plot(x_vals, y_vals, marker="o")
         ax.set_xlabel(f"Time (step={step})")
         ax.set_ylabel(f"Value at {target}")
         ax.grid(True)
         st.pyplot(fig)
+        
+        # 5) Show table
+        st.subheader("Extracted series")
+        st.dataframe(
+            [{"Experiment_Time": x, f"Value_at_{target}": y} for x, y in zip(x_vals, y_vals)],
+            use_container_width=True
+        )
+
+        
 
         # 6) Download CSV
         from io import StringIO
