@@ -12,7 +12,7 @@ if "uploader_key" not in st.session_state:
 if "uploaded_files" not in st.session_state:
     st.session_state.uploaded_files = None
 
-c1, c2 = st.columns([3, 2])
+c1, c2 = st.columns([3, 1])
 with c1:
     files = st.file_uploader(
         "Upload one or more .txt files",
