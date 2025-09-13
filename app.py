@@ -258,8 +258,9 @@ if files:
         else:
             # plain space-separated TXT
             for x, y in zip(x_vals, y_vals):
-                y_pt = (str(y).replace(".", ",")) if isinstance(y, float) else y
-                buf.write(f"{x} {y_pt}\n")
+                x_str = f"{x}".replace(".", ",") if isinstance(x, float) else str(x)
+                y_str = (str(y).replace(".", ",")) if isinstance(y, float) else y
+                buf.write(f"{x_str} {y_str}\n")
             st.download_button(
                 "Download TXT",
                 data=buf.getvalue(),
