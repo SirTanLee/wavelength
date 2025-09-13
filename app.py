@@ -234,13 +234,36 @@ if files:
             use_container_width=True
         )
 
-        # 6) Download CSV
+        # 6) Download results (choose format)
         from io import StringIO
+
+        download_format = st.radio(
+            "Download format",
+            ["CSV (; + ,)", "TXT (space-separated)"],
+            horizontal=True
+        )
+
         buf = StringIO()
-        w = csv.writer(buf, delimiter=";")
-        w.writerow(["Experiment_Time", f"Value_at_{target}"])
-        for x, y in zip(x_vals, y_vals):
-            y_pt = (str(y).replace(".", ",")) if isinstance(y, float) else y
-            w.writerow([x, y_pt])
-        st.download_button("Download CSV (; + ,)", data=buf.getvalue(),
-                           file_name="results.csv", mime="text/csv")
+        if download_format.startswith("CSV"):
+            writer = csv.writer(buf, delimiter=";")
+            writer.writerow(["Experiment_Time", f"Value_at_{target}"])
+            for x, y in zip(x_vals, y_vals):
+                y_pt = (str(y).replace(".", ",")) if isinstance(y, float) else y
+                writer.writerow([x, y_pt])
+            st.download_button(
+                "Download CSV",
+                data=buf.getvalue(),
+                file_name="results.csv",
+                mime="text/csv",
+            )
+        else:
+            # plain space-separated TXT
+            for x, y in zip(x_vals, y_vals):
+                y_pt = (str(y).replace(".", ",")) if isinstance(y, float) else y
+                buf.write(f"{x} {y_pt}\n")
+            st.download_button(
+                "Download TXT",
+                data=buf.getvalue(),
+                file_name="results.txt",
+                mime="text/plain",
+            )
