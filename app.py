@@ -244,11 +244,11 @@ if files:
 
         buf = StringIO()
         if download_format.startswith("CSV"):
-            writer = csv.writer(buf, delimiter=";")
+            writer = csv.writer(buf, delimiter=",")
             writer.writerow(["Experiment_Time", f"Value_at_{target}"])
             for x, y in zip(x_vals, y_vals):
-                y_pt = (str(y).replace(".", ",")) if isinstance(y, float) else y
-                writer.writerow([x, y_pt])
+                #y_pt = (str(y).replace(".", ",")) if isinstance(y, float) else y
+                writer.writerow([x, y])
             st.download_button(
                 "Download CSV",
                 data=buf.getvalue(),
