@@ -12,7 +12,7 @@ mode = st.radio(
     "Choose input type",
     ["TXT (stable)", "CSV (beta)"],
     captions=[
-        "Two numeric columns per line, separated by spaces/tabs. Decimal comma or dot."
+        "Two numeric columns per line, separated by spaces/tabs. Decimal comma or dot.",
     ],
     index=0,  # default to TXT for now
 )
