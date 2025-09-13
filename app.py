@@ -238,7 +238,7 @@ if files:
 
         download_format = st.radio(
             "Download format",
-            ["CSV (; + ,)", "TXT (space-separated)"],
+            ["TXT (space-separated)", "CSV (; + ,)"],
             horizontal=True
         )
 
